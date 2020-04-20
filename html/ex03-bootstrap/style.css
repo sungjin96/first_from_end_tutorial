@@ -5,3 +5,8 @@
 .btn-danger:hover {
   background-color: black;
 }
+/** ============================================ */
+.col {
+  background-color: grey;
+  border: 1px solid black;
+}
