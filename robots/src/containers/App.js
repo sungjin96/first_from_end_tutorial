@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import ErrorBoundry from "../components/ErrorBoundry";
 import "./App.css";
 
+import { setSearchField } from "../actions";
+
 const App = () => {
-  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const searchField = useSelector((state) => state.searchField, []);
   const [robotList, setRobotList] = useState([]);
 
   const onChange = (e) => {
-    setSearch(e.target.value);
+    dispatch(setSearchField(e.target.value));
   };
 
   useEffect(() => {
@@ -24,7 +28,7 @@ const App = () => {
   }, []);
 
   const filteredRobots = robotList.filter((robot) => {
-    return robot.name.toLowerCase().includes(search.toLowerCase());
+    return robot.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
   if (!robotList.length) return <h1>Loading.....</h1>;
