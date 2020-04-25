@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import CardList from "./CardList";
-import SearchBox from "./SearchBox";
-import Scroll from './Scroll';
+import CardList from "../components/CardList";
+import SearchBox from "../components/SearchBox";
+import Scroll from "../components/Scroll";
 import "./App.css";
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
     return robot.name.toLowerCase().includes(search.toLowerCase());
   });
 
-  if (robotList.length === 0) return <h1>Loading.....</h1>;
+  if (!robotList.length) return <h1>Loading.....</h1>;
 
   return (
     <div className="tc">
