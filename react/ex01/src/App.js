@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CardList from "./CardList";
 import SearchBox from "./SearchBox";
+import Scroll from './Scroll';
 import "./App.css";
 
 const App = () => {
@@ -32,7 +33,9 @@ const App = () => {
     <div className="tc">
       <h1 className="f1">RobotFriends</h1>
       <SearchBox onChange={onChange} />
-      <CardList robots={filteredRobots} />
+      <Scroll>
+        <CardList robots={filteredRobots} />
+      </Scroll>
     </div>
   );
 };
