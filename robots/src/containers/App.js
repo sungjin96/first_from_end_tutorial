@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
+import ErrorBoundry from "../components/ErrorBoundry";
 import "./App.css";
 
 const App = () => {
@@ -18,7 +19,6 @@ const App = () => {
         return res.json();
       })
       .then((users) => {
-        console.log(users);
         setRobotList(users);
       });
   }, []);
@@ -34,7 +34,9 @@ const App = () => {
       <h1 className="f1">RobotFriends</h1>
       <SearchBox onChange={onChange} />
       <Scroll>
-        <CardList robots={filteredRobots} />
+        <ErrorBoundry>
+          <CardList robots={filteredRobots} />
+        </ErrorBoundry>
       </Scroll>
     </div>
   );
