@@ -10,14 +10,12 @@ export const setSearchField = (text) => ({
   payload: text,
 });
 
-export const requestRobots = () => {
-  return (dispatch) => {
-    dispatch({ type: REQUSET_ROBOTS_PENDING });
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((data) => dispatch({ type: REQUSET_ROBOTS_SUCCESS, payload: data }))
-      .catch((error) =>
-        dispatch({ type: REQUEST_ROBOTS_FAILED, payload: error })
-      );
-  };
+export const requestRobots = () => (dispatch) => {
+  dispatch({ type: REQUSET_ROBOTS_PENDING });
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((data) => dispatch({ type: REQUSET_ROBOTS_SUCCESS, payload: data }))
+    .catch((error) =>
+      dispatch({ type: REQUEST_ROBOTS_FAILED, payload: error })
+    );
 };
