@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Particles from "react-particles-js";
 import Clarifai from "clarifai";
 import Navigation from "./components/Navigation/Navigation";
@@ -45,7 +45,7 @@ function App() {
       bottomRow: height - clarifaiFace.bottom_row * height,
     };
   };
-
+  
   const displayFaceBox = (box) => {
     setBox(box);
   };

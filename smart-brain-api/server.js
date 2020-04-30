@@ -1,18 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt-nodejs");
+const cors = require("cors");
 
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(cors());
 const database = {
   users: [
     {
       id: "123",
       name: "John",
-      email: "john@gmail.com",
-      password: "cookies",
+      email: "admin@admin.com",
+      password: "1",
       entries: 0,
       joined: new Date(),
     },
@@ -39,14 +39,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signin", (req, res) => {
-  // res === false or true
-  bcrypt.compare("bacon", hash, (err, res) => {});
-  bcrypt.compare("veggies", hash, (err, res) => {});
-
   const { email, password } = req.body;
+  console.log(req.body);
   if (
     email === database.users[0].email &&
-    password === database.users[0].email
+    password === database.users[0].password
   ) {
     res.json("success");
   } else {
@@ -100,8 +97,6 @@ app.post("/image", (req, res) => {
     res.status(400).json(" no such user ");
   }
 });
-
-
 
 app.listen(3000, () => {
   console.log("app is running on port 3000");
